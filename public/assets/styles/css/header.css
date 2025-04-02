@@ -40,6 +40,7 @@ body {
   background-color: white;
   border-radius: 50px;
   padding: 5px 15px;
+  margin-left: 350px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -67,7 +68,7 @@ body {
   border-bottom: 1px solid #ddd;
   position: relative;
   overflow: hidden;
-  margin-right: 10px;
+  margin-right: 20px;
   border-radius: 10px;
 }
 
