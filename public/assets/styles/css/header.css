@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+}
+
+.header {
+  background-color: #341f70;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header-logo {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.logo {
+  height: 220px;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 50px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-form input {
+  border: none;
+  outline: none;
+  padding: 8px 10px;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.search-form button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+        /* Carrousel météo */
+.carrousel-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  overflow: hidden;
+  margin-right: 10px;
+  border-radius: 10px;
+}
+
+.carrousel-btn {
+  background: white;
+  border: none;
+  font-size: 22px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carrousel-meteo {
+  overflow: hidden;
+  flex-grow: 1;
+
+}
+
+.carrousel-meteo::-webkit-scrollbar {
+  display: none;
+}
+.carrousel-meteo {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.carrousel-inner {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  transition: transform 0.3s ease;
+  scroll-behavior: smooth;
+}
+
+.carte-ville {
+  min-width: 160px;
+  background: #f3f4f6;
+  padding: 10px 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.carte-ville img {
+  width: 32px;
+  height: 32px;
+}
+
+.carte-ville .temp {
+  font-size: 18px;
+  font-weight: bold;
+}

@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Météo à
+	{{ ville }}
+{% endblock %}
+
+{% block body %}
+	{% if meteo %}
+		<div
+			class="page-container">
+			<!-- Zone gauche (carte jour + 3 jours suivants) -->
+			<div class="zone-gauche">
+				<div class="meteo-container">
+					<div class="meteo-header">
+						<h2>Météo
+							{{ ville|capitalize }}</h2>
+						<div class="datetime">{{ meteo.location.localtime|fr_date }}</div>
+					</div>
+
+					<div class="meteo-main" style="display: flex; justify-content: space-around; align-items: center; text-align: center;">
+						<div>
+							<img src="https:{{ meteo.current.condition.icon }}" alt="Icône météo" class="weather-icon"><br>
+							{{ meteo.current.condition.text }}
+						</div>
+						<div>
+							<div class="temp" style="font-size: 32px; font-weight: bold;">🌡
+								{{ meteo.current.temp_c }}°</div>
+							<div style="font-size: 14px; color: #444;">T. ressentie
+								{{ meteo.current.feelslike_c }}°</div>
+						</div>
+						<div>
+							Vent
+							{{ meteo.current.wind_dir|fr_wind_dir }}<br>
+							{{ meteo.current.wind_kph }}
+							km/h
+						</div>
+
+					</div>
+
+
+					<div class="meteo-footer">
+						💧
+						<strong>Humidité :</strong>
+						{{ meteo.current.humidity }}%<br>
+						🔄
+						<strong>Mise à jour :</strong>
+						{{ meteo.current.last_updated|date('H:i') }}
+					</div>
+				</div>
+
+				<div class="previsions-jour-suivants">
+					{% for i, jour in previsions %}
+						<div class="carte-jour" onclick="afficherHeures(this)" data-date="{{ jour.date|date('Y-m-d') }}" data-label="{{ jour.date|fr_date }}">
+							<h4>
+								{% if i == 0 %}
+									Aujourd’hui
+								{% elseif i == 1 %}
+									Demain
+								{% else %}
+									{{ jour.date|fr_jour_nom }}
+								{% endif %}
+							</h4>
+							<p class="date">{{ jour.date|fr_jour_mois }}</p>
+							<img src="https://cdn.weatherapi.com/weather/64x64/day/{{ jour.icon }}" alt="{{ jour.condition }}">
+							<p>{{ jour.condition|nettoie_condition }}</p>
+							<p class="temp">{{ jour.max }}° /
+								{{ jour.min }}°</p>
+							<p class="vent">
+								{{ jour.vent_direction|wind_abbr_fr }}<br>
+								{{ jour.vent_vitesse }}
+								km/h</p>
+
+
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- Zone droite (heure par heure) -->
+			<div class="zone-droite">
+				<div id="heures-details" class="heures-table-container"></div>
+			</div>
+		</div>
+
+		<script>
+			const dataHeures = {{ heuresParJour|json_encode|raw }};
+const jourActuel = "{{ jourActuel }}";
+const jourActuelLabel = "{{ jourActuelLabel }}";
+
+function afficherHeures(elem = null, date = null, label = null) {
+if (elem) {
+date = elem.getAttribute("data-date");
+label = elem.getAttribute("data-label");
+}
+
+const heures = dataHeures[date];
+const container = document.getElementById("heures-details");
+
+if (! heures || heures.length === 0) {
+container.innerHTML = "<p>Aucune donnée disponible pour ce jour.</p>";
+return;
+}
+
+const heuresAFiltrer = [
+'02:00',
+'05:00',
+'08:00',
+'11:00',
+'14:00',
+'17:00',
+'20:00',
+'23:00'
+];
+
+let html = `<h4 class="mb-3 text-center">${
+label ?? date
+}</h4>
+  <div class="heure-table">`;
+
+heures.forEach(h => {
+const heure = h.time.slice(11, 16);
+if (! heuresAFiltrer.includes(heure)) 
+return;
+
+
+html += `
+      <div class="heure-row">
+        <div class="text-center">${heure}</div>
+        <div class="text-center"><img src="https:${
+h.icon
+}" width="32" alt="${
+h.text
+}"></div>
+        <div class="text-center">${
+h.temp
+}°</div>
+        <div class="text-center">
+          ${
+h.text.replace('à proximité', '').trim()
+}<br>
+          <small>T. ressentie ${
+h.feelslike_c ?? '-'
+}°</small>
+        </div>
+        <div class="text-center">
+          ${
+h.wind_dir ?? '-'
+}<br>${
+h.wind_kph
+} km/h
+        </div>
+        <div class="text-center">
+          💧 ${
+h.humidity !== null ? h.humidity + '%' : '-'
+}<br>
+          🌧 ${
+h.chance_of_rain ?? 0
+}%<br>
+          ${
+h.precip_mm ?? 0
+} mm
+        </div>
+      </div>`;
+});
+
+html += "</div>";
+container.innerHTML = html;
+}
+
+
+// Appel automatique au chargement pour aujourd’hui
+window.addEventListener('DOMContentLoaded', () => {
+afficherHeures(null, jourActuel, jourActuelLabel);
+});
+		</script>
+	{% endif %}
+{% endblock %}

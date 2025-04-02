@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}MétéoDirect{% endblock %}</title>
+        <link rel="icon" href="{{ asset('favicon.png') }}" type="image/svg+xml">
+        {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/styles/css/header.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/styles/css/meteo.css') }}">
+
+        {% endblock %}
+
+   
+    </head>    
+       <body>
+		{% include 'elements/header.html.twig' %}
+		<main>
+			{% block body %}{% endblock %}
+		</main>
+		{# {% include 'elements/footer.html.twig' %} #}
+    </body>
+</html>

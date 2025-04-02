@@ -1,0 +1,46 @@
+<header class="header">
+  <div class="container-fluid">    
+    <div class="header-logo">
+      <img src="{{ asset('divers/images/logo.png') }}" alt="MétéoDirect" class="logo">
+    </div>
+    <form method="get" action="{{ path('meteo_index') }}" class="search-form">
+      <input type="text" name="ville" placeholder="La météo pour..." required>
+      <button type="submit">🔍</button>
+    </form>
+  </div>
+ <div class="carrousel-wrapper">
+    <button class="carrousel-btn left" onclick="scrollCarrousel(-1)">&#10094;</button>
+
+    <div class="carrousel-meteo" id="carrousel-scroll">
+      <div class="carrousel-inner">
+        {% for v in villesCarrousel %}
+          <a class="carte-ville" href="{{ path('meteo_index', { ville: v.ville }) }}">
+            <img src="https:{{ v.icon }}" alt="{{ v.condition }}">
+            <div class="info-ville">
+              <strong>{{ v.ville }}</strong><br>
+              <small>{{ v.departement }}</small>
+            </div>
+            <div class="temp">{{ v.temp }}°</div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <button class="carrousel-btn right" onclick="scrollCarrousel(1)">&#10095;</button>
+  </div>
+
+  <script>
+    function scrollCarrousel(direction) {
+      const container = document.getElementById("carrousel-scroll");
+      const scrollAmount = 200;
+      container.scrollBy({
+        left: direction * scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+</script>
+
+
+
+</header>

@@ -1,0 +1,245 @@
+body {
+  background-color: rgba(128, 128, 128, 0.526);
+  font-family: sans-serif;
+}
+
+.meteo-container {
+  max-width: 555px;
+  margin-top: 100px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f4f8fc;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+.meteo-header {
+  border-bottom: 1px solid #d0e3f0;
+  margin-bottom: 20px;
+}
+
+.meteo-header h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #003366;
+}
+
+.meteo-header .datetime {
+  font-size: 14px;
+  color: #555;
+}
+
+.meteo-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #bde0fb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.meteo-main .temp {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.meteo-main .details {
+  text-align: right;
+}
+
+.meteo-footer {
+  font-size: 14px;
+  color: #333;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #003366;
+}
+
+img.weather-icon {
+  width: 64px;
+  height: 64px;
+}
+
+/* Carte du jour */
+.meteo-card {
+  background: #d8ecf5;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 220px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.meteo-card h2 {
+  margin-bottom: 0;
+  color: #003366;
+}
+
+.meteo-card .date {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}
+
+.meteo-card .temp {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.temp {
+  font-size: 20px;
+}
+
+.humidity,
+.wind {
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* Prévisions à 5 jours */
+.previsions-jour-suivants {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  border-radius: 12px;
+}
+
+.carte-jour {
+  background-color: #f8fafc;
+  border-radius: 10px;
+  padding: 20px 15px;
+  width: 160px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.carte-jour:hover {
+  background-color: #d8ecf5;
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.carte-jour h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e293b;
+}
+
+.carte-jour .date {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.carte-jour img {
+  width: 52px;
+  height: 52px;
+  margin: 10px auto;
+}
+
+.carte-jour .temp {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #ef4444;
+}
+
+.carte-jour p {
+  min-height: 22px;
+}
+
+.carte-jour .vent {
+  font-size: 13px;
+  color: #334155;
+  margin-top: auto;
+}
+
+/* Page layout */
+.page-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+.zone-gauche {
+  flex: 1;
+  max-width: 55%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.zone-droite {
+  flex: 1;
+  margin-top: 100px;
+  max-width: 45%;
+  background: #f9fcff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Tableau heure par heure */
+.heures-table-container {
+  background: #f0f4f8;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  min-height: 100%;
+}
+
+.heures-grid {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.heure-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 14px;
+  gap: 8px;
+}
+
+.heure-row {
+  display: grid;
+  grid-template-columns: 60px 50px 60px 1fr 90px 70px;
+  align-items: center;
+  padding: 8px 10px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e0e7ef;
+}
+
+.heure-row.header {
+  font-weight: bold;
+  background: #f0f4f8;
+  border-bottom: 2px solid #cfd8e3;
+}
+
+.heure-row img {
+  display: block;
+  margin: auto;
+}
+          /* Partie humidite heure par heure */
+.heure-row > div {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.meteo-humidite {
+  font-size: 14px;
+  line-height: 1.4;
+}
