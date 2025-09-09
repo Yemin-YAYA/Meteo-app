@@ -1,16 +1,23 @@
-🌤️ Application Météo
+# 🌤️ MétéoDirect
+**Prévisions claires, météo directe.**
 
-Une application web permettant de consulter la météo en temps réel ainsi que les prévisions.
-Développée avec PHP, Brindille/Twig, JavaScript et CSS, elle repose sur une architecture claire et modulaire.
+Application météo moderne et responsive permettant de consulter :  
+- la météo actuelle 🌞  
+- les prévisions jour par jour 📅  
+- les prévisions heure par heure ⏳  
+pour plusieurs villes en France 🇫🇷.  
 
-🚀 Fonctionnalités
+---
 
-📍 Consultation de la météo actuelle par ville
+## 🚀 Fonctionnalités
 
-⏳ Prévisions météo (heures / jours)
+- 🔍 **Recherche météo par ville**  
+- 🏙️ **Affichage multi-villes** *(Paris, Niort, Marseille…)*  
+- 🌡️ **Température actuelle + ressentie**  
+- 💨 **Vent (direction + vitesse)**  
+- 💧 **Humidité & précipitations**  
+- 📆 **Prévisions jour par jour**  
+- ⏱️ **Prévisions heure par heure**  
+- 📱 **Interface claire, responsive et agréable**  
 
-🌍 Interface responsive et simple à utiliser
-
-🔑 Gestion des clés API via .env
-
-🛠️ Support Docker avec compose.yaml
+---
